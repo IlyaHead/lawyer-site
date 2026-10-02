@@ -1,0 +1,473 @@
+/* ==========================================================================
+   1. ОБНУЛЕНИЕ СТИЛЕЙ И БАЗОВЫЕ НАСТРОЙКИ
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    color: #1e293b; 
+    overflow: hidden; 
+}
+
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   2. ЛЕВАЯ ПОЛОВИНА: ФОТОГРАФИЯ АДВОКАТА
+   ========================================================================== */
+.image-side {
+    flex: 1;
+    background-image: url('IMG_8138.JPG'); 
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+/* ==========================================================================
+   3. ПРАВАЯ ПОЛОВИНА: КОНТЕНТНЫЙ БЛОК
+   ========================================================================== */
+.content-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    background-color: #f8fafc;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.logo .status {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.header-contacts {
+    text-align: right;
+}
+
+.phone-link {
+    font-size: 24px;
+    font-weight: 700;
+    color: #115e59; 
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.phone-link:hover {
+    color: #0f766e;
+}
+
+.work-time {
+    display: block;
+    font-size: 11px;
+    color: #df2020;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.hero-offer {
+    max-width: 540px;
+    margin: auto 0;
+}
+
+.tagline {
+    font-size: 14px;
+    color: #0f766e;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.main-title {
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #0f172a;
+}
+
+.specialties-list {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.specialties-list li {
+    font-size: 17px;
+    color: #334155;
+    margin-bottom: 14px;
+    position: relative;
+    padding-left: 24px;
+}
+
+.specialties-list li::before {
+    content: "•";
+    color: #14b8a6; 
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+    top: -4px;
+}
+
+.author-credits a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* ==========================================================================
+   4. СЕТКА КНОПОК ДЕЙСТВИЯ (CTA)
+   ========================================================================== */
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.tg-btn { 
+    background-color: #0284c7; 
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.15); 
+}
+
+.wa-btn { 
+    background-color: #16a34a; 
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.15); 
+}
+
+.inst-btn { 
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+    box-shadow: 0 4px 14px rgba(220, 39, 67, 0.15);
+}
+
+.mail-btn { 
+    background-color: #1e293b; 
+    box-shadow: 0 4px 14px rgba(30, 41, 59, 0.15); 
+}
+
+.icon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.cta-note {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.footer p {
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   5. СТИЛИ МОДАЛЬНОГО ОКНА И ВАЛИДАЦИИ
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-window {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-window {
+    transform: translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #64748b;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close-btn:hover {
+    color: #0f172a;
+}
+
+.modal-title {
+    font-size: 22px;
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: #14b8a6; 
+}
+
+/* ЖЕСТКАЯ ФИКСАЦИЯ РАЗМЕРА ТЕКСТОВОГО ПОЛЯ */
+.form-group textarea {
+    resize: none; 
+    width: 100%;
+    min-height: 110px;
+    max-height: 110px;
+} 
+
+.label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.char-counter {
+    font-size: 12px;
+    color: #94a3b8;
+    transition: color 0.2s ease;
+}
+
+.input-hint {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: -4px;
+}
+
+/* Красная подсветка поля, если формат телефона не подошел под регулярное выражение */
+.form-group input:user-invalid {
+    border-color: #ef4444;
+    background-color: #fff5f5; 
+}
+
+.form-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #115e59;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-submit-btn:hover {
+    background-color: #0f766e;
+}
+
+/* ========================================== */
+/* 6. МОБИЛЬНЫЙ АДАПТИВ                       */
+/* ========================================== */
+@media (max-width: 1024px) {
+    body {
+        overflow: auto; 
+    }
+    
+    .main-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .image-side {
+        height: 60vh;
+        background-position: center top;
+    }
+    
+    .content-side {
+        padding: 40px 20px;
+        background-color: #ffffff; 
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-contacts {
+        text-align: left;
+    }
+    
+    .hero-offer {
+        max-width: 100%;
+        margin: 30px 0;
+    }
+    
+    .main-title {
+        font-size: 30px;
+    }
+    
+    .cta-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    .modal-window {
+        padding: 30px 20px;
+        max-width: 90%; 
+    }
+}
+
+/* Стили для блока согласия с политикой */
+.form-group-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group-checkbox input[type="checkbox"] {
+    width: auto;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.form-group-checkbox label {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.form-group-checkbox a {
+    color: #115e59;
+    text-decoration: underline;
+}
+
+.form-group-checkbox a:hover {
+    color: #0f766e;
+}
+
+/* Стили для экрана успешной отправки */
+.modal-success {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeIn 0.4s ease forwards; 
+}
+
+/* Красивый круглый блок с галочкой */
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #14b8a6; 
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 10px rgba(20, 184, 166, 0.3);
+}
+
+.modal-success h4 {
+    font-size: 20px;
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.modal-success p {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* Простая анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
